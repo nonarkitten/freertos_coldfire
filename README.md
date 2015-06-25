@@ -21,13 +21,17 @@ Lastly, since the ColdFire does have the FF1 instruction (similar to the ARM CLZ
 # Summary Changed or New Definitions (FreeRTOSConfig.h or portmacro.h)
 portUSING_PRIVILEGE_MODE
 - Splits MPU operation (memory protection) from PRIVILEGED operation (Supervisor/User state)
+
 configIDLE_TASK_NAME
 - Specify the name of the idle task in the configuration file
+
 configUSE_CONFIG_ASSERT
 - Simply enable and disable the configASSERT defintion
+
 configKERNEL_INTERRUPT_PRIORITY
 - Actually affects the SWI interrupt level
 - Can be any value from 1 thru 7
+
 configMAX_SYSCALL_INTERRUPT_PRIORITY
 - Allows higher priority interrupts to run in a critical section
 - configKERNEL_INTERRUPT_PRIORITY should be equal to or less than this value
