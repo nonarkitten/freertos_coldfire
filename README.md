@@ -13,6 +13,11 @@ Swapping between user and supervisor states is a little more involved, but the e
 5. Call the normal FreeRTOS yield handler.
 6. Reverse the above steps
 7. Perform an 'RTE' and return to user mode
+ 
+All further exception processing now occurs on the system stack including any nested interrupts (if enabled). Thus the maximum task stack size can be determined as long as recursion isn't being used.
+
+1. Determining greatest stack depth in the function
+2. Add the context overhead (68 bytes)
 
 Additionally, critical sections cannot simply be entered through setting and clearing the CPUSR interrupt-level bits (since this is a privellaged operation). Instead, two traps have been made (trap 12 and trap 13) which can be invoked from user land. With a little stack twiddling, the interrupt mask is set through the RTE instruction making enabling and disabling of the interrupts an atomic operation.
 
